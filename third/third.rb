@@ -8,7 +8,7 @@ end
 
 def sum_digits(factorial)
   sum = 0
-  string = factorial.to_s.delete "0"
+  string = factorial.to_s
   string.each_char do |chr|
     sum += chr.to_i
   end
