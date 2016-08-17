@@ -12,10 +12,6 @@ class City
     @id        = @@cities.size
   end
 
-  def visited?
-    @visited == true ? true : false
-  end
-
   def self.reset
     @@cities.each do |city|
       city.vertex  = Float::INFINITY
@@ -27,9 +23,5 @@ class City
   def self.cities
     @@cities
   end
-
-  def add_paths id, cost
-    @paths[id] = cost
-  end
-
+  
 end
