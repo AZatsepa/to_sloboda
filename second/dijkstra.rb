@@ -5,8 +5,8 @@ def dijkstra departure_name, final_name
   departure_city        = cities.find { | city | city.name == departure_name } # search object "departure_city" by name
   final_city            = cities.find { | city | city.name == final_name }     # search object "final_city" by name
   departure_city.vertex = 0 # setting value of vertex starting city
-  sorted_cities = cities.sort_by { |city| city.vertex }
-  sorted_cities.each do |city|     # iteration array of cities for search city`s neiborghs
+  cities.sort! {|x,y| x.vertex <=> y.vertex }
+  cities.each do |city|     # iteration array of cities for search city`s neiborghs
     city.paths.each_pair do |id, cost|
       neiborgh = cities.find {|city| city.id == id} #set current neiborgh in iteration by current id
       if neiborgh.vertex > city.vertex + cost # validation neiborgh of current city
@@ -14,7 +14,7 @@ def dijkstra departure_name, final_name
       end
       city.visited = true      # set new visited status of current city
     end
-    sorted_cities.sort! {|x,y| x.vertex <=> y.vertex }
+    cities.sort! {|x,y| x.vertex <=> y.vertex }
   end
   coast = final_city.vertex # initialize variable for write result of function
   City.reset # reset values of cities array to initials

@@ -21,7 +21,7 @@ class City
       city.vertex  = Float::INFINITY
       city.visited = false
     end
-    @@cities.sort_by {|city| city.id }
+    @@cities.sort! {|x, y| x.id <=> y.id }
   end
 
   def self.cities
