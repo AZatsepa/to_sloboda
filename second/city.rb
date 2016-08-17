@@ -1,15 +1,15 @@
 class City
   @@cities = []
-  attr_accessor :visited, :paths, :name, :neighbors, :id, :vertex
+  attr_accessor :name, :vertex, :visited, :paths, :neighbors, :id
 
   def initialize name, neighbors
-    @vertex    = Float::INFINITY
     @name      = name
+    @vertex    = Float::INFINITY
+    @visited   = false
     @neighbors = neighbors
     @paths     = {}
     @@cities.push self
     @id        = @@cities.size
-    @visited   = false
   end
 
   def visited?
@@ -21,10 +21,15 @@ class City
       city.vertex  = Float::INFINITY
       city.visited = false
     end
+    @@cities.sort_by {|city| city.id }
   end
 
   def self.cities
     @@cities
+  end
+
+  def add_paths id, cost
+    @paths[id] = cost
   end
 
 end

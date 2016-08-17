@@ -1,22 +1,22 @@
-# require "./city.rb"
 require "./dijkstra.rb"
 
-def create_map
+def create_map  # create map of cities with the paths between
   puts "Enter numbers of cities, please. The numbers of sities must be <= 10000"
   cities_numbers = gets.chomp.to_i
   if cities_numbers <= 10000
-    cities_numbers.times { yield }
+    cities_numbers.times { yield } # create new cities
   else
     puts "Enter right number!"
   end
 end
+
 def input
   puts "Enter the name of city."
   name = gets.chomp
   puts "Enter the number of neighbors."
   neighbors = gets.chomp.to_i
   city = City.new name, neighbors
-  neighbors.times do
+  neighbors.times do               # set the paths to neighbors
     puts "Enter id of neighbor and cost to #{city.name} through space"
     param   = gets.chomp
     id      = param.scan(/\d+/)[0].to_i
@@ -25,7 +25,7 @@ def input
   end
 end
 
-def calculate
+def calculate   # enter two cities and calculate cost of transportation between
   puts "Enter names of departure city and final city through space"
   names = gets.chomp
   departure_name = names.scan(/\w+/)[0]
